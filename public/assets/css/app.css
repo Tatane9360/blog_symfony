@@ -1,0 +1,20 @@
+@import url(./components/global.css);
+
+/* styles.css */
+
+.custom-card {
+    background-color: #FBBF0E; /* Couleur jaune pour la carte */
+}
+
+.custom-img {
+    max-height: 200px; /* Taille maximale pour les images */
+    object-fit: cover; /* Pour ajuster la taille de l'image sans déformer */
+}
+
+.custom-footer {
+    background-color: #FBBF0E; /* Couleur jaune pour le pied de la carte */
+}
+
+.navbar{
+    background-color: #FBBF0E !important;
+}

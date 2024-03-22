@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+
+{{ include('template-parts/general-notifs.html.twig') }}
+
+<div class="container">
+    <h1 class="my-4">Liste des articles</h1>
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{{ asset('assets/img/cover_img/' ~ article.getCoverImg) }}" class="card-img-top custom-img" alt="cover">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                    </div>
+                    <div class="card-footer custom-footer">
+                        <a href="{{ path('app_admin_delete' , { 'id': article.id  }) }}" class="btn btn-danger">
+                            <span class="fs-3">🗑️ supprimer</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

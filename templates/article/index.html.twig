@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+{{ include('template-parts/general-notifs.html.twig') }}
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background:#FFC531 !important;"> 
+  <div class="container-fluid"> 
+    <a class="navbar-brand" href="{{path('app_home_blog')}}">
+      <img src="{{ asset('assets/img/logoCinePop_final.png') }}" alt="Logo" width="125px">
+<!-- Adjust 'src' and 'height' as needed -->
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse fw-semibold" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto gap-3">
+        <a class="nav-link active fs-4" aria-current="page" href="{{path('app_article_explorer')}}">Explorer</a>
+        <a class="nav-link active fs-4" aria-current="page" href="{{path('app_article_add')}}">Écrire</a>
+        <a class="nav-link fs-4" href="{{path('app_login')}}">Connexion</a>
+        <a class="nav-link fs-4" href="{{path('app_register')}}">Inscription</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <h1 class="my-4">CinePop'</h1>
+    <h2>Rejoignez les Cinépopers en partageant votre avis et en échangeant avec d’autres utilisateurs passionnés de cinéma sur les dernières sorties en salle ou vos films favoris !</h2>
+    <h5 class="mt-4 mb-3">Les nouveautés des Cinépopers :</h5>
+    <div class="row">
+        {% for article in articles %}
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card h-100" style="background-color: #FFC531;"> 
+        <img src="{{ asset('assets/img/cover_img/' ~ article.getCoverImg) }}" class="card-img-top custom-img" style="width: 100%; height: 400px;" alt="cover">
+        <div class="card-body">
+            <h5 class="card-title text-center">{{ article.title }}</h5>
+        </div>
+        <div class="card-footer d-flex flex-row justify-content-between align-items-center p-3" style="background-color: #FFC531;">
+            <a href="{{ path('app_article_read', {'id': article.id}) }}" class="btn btn-primary bg-black" style="border:none;">Voir l'article</a>
+        </div>
+        <div class="d-flex justify-content-between mx-auto gap-4">
+            <div class="text-light text-body fw-semibold">Paru le : {{ article.date|date('Y-m-d') }}</div>
+            <div class="text-light text-body fw-semibold mb-2">Publié par : {{ article.author }}</div>
+        </div>
+    </div>
+</div>
+
+        {% endfor %}
+    </div>
+</div>
+<footer class="footer bg-dark text-light p-3" style="color: #FFC531 !important;" >
+    <div class="container">
+        <div class="row text-center">
+            <small>CinéPop’ © 2024 Tous droits réservés ®</small>
+        </div>
+    </div>
+</footer>
+
+
+{% endblock %}

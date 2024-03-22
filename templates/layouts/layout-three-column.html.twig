@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 three-column-layout-left bg-danger">
+                {% block contentLeftColumn %}{% endblock %}
+            </div>
+            <div class="col-md-4 three-column-layout-center bg-warning">
+                {% block contentCentertColumn %}{% endblock %}
+            </div>
+            <div class="col-md-4 three-column-layout-right bg-primary">
+                {% block contentRightColumn %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

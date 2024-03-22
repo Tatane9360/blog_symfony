@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background:#FFC531 !important;"> 
+  <div class="container-fluid"> 
+    <a class="navbar-brand" href="{{path('app_home_blog')}}">
+      <img src="{{ asset('assets/img/logoCinePop_final.png') }}" alt="Logo" width="125px">
+<!-- Adjust 'src' and 'height' as needed -->
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse fw-semibold" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto gap-3">
+        <a class="nav-link active fs-4" aria-current="page" href="{{path('app_article_explorer')}}">Explorer</a>
+        <a class="nav-link fs-4" href="{{path('app_login')}}">Connexion</a>
+        <a class="nav-link fs-4" href="{{path('app_home_blog')}}">Accueil</a>
+      </div>
+    </div>
+  </div>
+</nav>
+    <style>
+        body {
+            background-image: url('assets/img/bgflou.png');
+            background-size: cover;
+            background-position: center; 
+        }
+        form{
+            background:white;
+            width: 40vw;
+            height:55vh;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 0 0 1.5rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        h1{
+            background: #FFC531;
+            width: 40vw;
+            margin: auto;
+            margin-top: 1rem;
+            border-radius: 1.5rem 1.5rem 0 0;
+            text-align: center;
+            padding: 0.6rem;
+        }
+        p{
+            background: #FFC531;
+            width: 40vw;
+            margin: auto;
+            text-align:center;
+            padding-bottom:1rem;
+        }
+        button{
+            color: dark;
+            background: #FFC531 !important;
+            width: 100%;
+            border-radius: 50px !important;
+        }
+        input:focus{
+            border-outline: none !important;
+        }
+    </style>
+    <h1>Bienvenue !</h1>
+    <p>Rejoignez la communauté CinéPop’ dès maintenant !</p>
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.username) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">ENVOYER</button>
+    {{ form_end(registrationForm) }}
+
+<footer class="footer bg-dark text-light p-3" style="color: #FFC531 !important;" >
+    <div class="container">
+        <div class="row text-center">
+            <small>CinéPop’ © 2024 Tous droits réservés ®</small>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}

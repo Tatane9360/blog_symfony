@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+<style>
+        body {
+            background-image: url('assets/img/bgflou.png');
+            background-size: cover;
+            background-position: center; 
+        }
+        form{
+            background:white;
+            width: 40vw;
+            height:40vh;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 0 0 1.5rem 1.5rem;
+            margin-bottom: 5.4rem;
+        }
+        h1{
+            background: #FFC531;
+            width: 40vw;
+            margin: auto;
+            margin-top: 2.5rem;
+            border-radius: 1.5rem 1.5rem 0 0;
+            text-align: center;
+            padding: 0.6rem;
+        }
+        p{
+            background: #FFC531;
+            width: 40vw;
+            margin: auto;
+            text-align:center;
+            padding-bottom:1rem;
+        }
+        button{
+            color: dark;
+            background: #FFC531 !important;
+            width: 100%;
+            border-radius: 50px !important;
+            border:none !important;
+            margin-top:2.5rem !important;
+        }
+        input:focus{
+            border-outline: none !important;
+            margin-bottom:1rem;
+        }
+    </style>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background:#FFC531 !important;"> 
+  <div class="container-fluid"> 
+    <a class="navbar-brand" href="{{path('app_home_blog')}}">
+      <img src="{{ asset('assets/img/logoCinePop_final.png') }}" alt="Logo" width="125px">
+<!-- Adjust 'src' and 'height' as needed -->
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse fw-semibold" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto gap-3">
+        <a class="nav-link active fs-4" aria-current="page" href="{{path('app_article_explorer')}}">Explorer</a>
+        <a class="nav-link fs-4" href="{{path('app_register')}}">Inscription</a>
+        <a class="nav-link fs-4" href="{{path('app_home_blog')}}">Accueil</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<h1>Connexion</h1>
+    <p>Passez ce portail et ouvrez vous au monde des CinéPopers’ !</p>
+    <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {# {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %} #}
+
+        <label for="username">Email</label>
+        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+        <label for="password">Mot de passe</label>
+        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+
+        {#
+            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Remember me
+                </label>
+            </div>
+        #}
+
+        <button class="btn btn-lg btn-primary" type="submit">
+            SE CONNECTER
+        </button>
+    </form>
+
+    <footer class="footer bg-dark text-light p-3" style="color: #FFC531 !important;" >
+        <div class="container">
+            <div class="row text-center">
+                <small>CinéPop’ © 2024 Tous droits réservés ®</small>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

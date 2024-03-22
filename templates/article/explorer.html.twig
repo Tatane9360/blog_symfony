@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Explorer{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background:#FFC531 !important;"> 
+  <div class="container-fluid"> 
+    <a class="navbar-brand" href="{{path('app_home_blog')}}">
+      <img src="{{ asset('assets/img/logoCinePop_final.png') }}" alt="Logo" width="125px">
+<!-- Adjust 'src' and 'height' as needed -->
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse fw-semibold" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto gap-3">
+        <a class="nav-link active fs-4" aria-current="page" href="{{path('app_home_blog')}}">Accueil</a>
+        <a class="nav-link active fs-4" aria-current="page" href="{{path('app_article_add')}}">Écrire</a>
+        <a class="nav-link fs-4" href="{{path('app_login')}}">Connexion</a>
+        <a class="nav-link fs-4" href="{{path('app_register')}}">Inscription</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+{{ include('template-parts/general-notifs.html.twig') }}
+
+<div class="container">
+    <h1 class="my-4">Liste des articles</h1>
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{{ asset('assets/img/cover_img/' ~ article.getCoverImg) }}" class="card-img-top custom-img" style="width: 100%; height: 400px;" alt="cover">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                    </div>
+                    <div class="card-footer custom-footer">
+                        <a href="{{ path('app_article_read', {'id': article.id}) }}" class="btn btn-dark">Voir l'article</a>
+                    </div>
+                    <div class="d-flex justify-content-between mx-auto gap-4">
+                        <div class="text-light text-body fw-semibold">Paru le : {{ article.date|date('Y-m-d') }}</div>
+                        <div class="text-light text-body fw-semibold mb-2">Publié par : {{ article.author }}</div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<footer class="footer bg-dark text-light p-3" style="color: #FFC531 !important;" >
+    <div class="container">
+        <div class="row text-center">
+            <small>CinéPop’ © 2024 Tous droits réservés ®</small>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}

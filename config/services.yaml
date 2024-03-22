@@ -1,0 +1,5 @@
+parameters:
+  # Environnement
+  # Écriture d'une variable d'environnement
+  app_param_env: "%env(APP_ENV)%"
+  cover_img_dir: "assets/img/cover_img"

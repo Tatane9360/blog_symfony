@@ -1,0 +1,89 @@
+{# templates/article/form.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Rédiger un article{% endblock %}
+
+{% block body %}
+<style>
+    #article_Publier{
+        background: #FFC531 !important;
+        color: black !important;
+        border: none !important;
+    }
+    form{
+        width: 90vw;
+        margin:auto !important;
+    }
+    input:focus{
+        border: 4px solid #FFC531 !important;
+    }
+    h1{
+        margin-top: 1.5rem;
+        text-align: center;
+    }
+</style>
+
+{{ include('template-parts/general-notifs.html.twig') }}
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background:#FFC531 !important;"> 
+  <div class="container-fluid"> 
+    <a class="navbar-brand" href="{{path('app_home_blog')}}">
+      <img src="{{ asset('assets/img/logoCinePop_final.png') }}" alt="Logo" width="125px">
+<!-- Adjust 'src' and 'height' as needed -->
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse fw-semibold" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto gap-3">
+        <a class="nav-link active fs-4" aria-current="page" href="{{path('app_article_explorer')}}">Explorer</a>
+        <a class="nav-link fs-4" href="{{path('app_login')}}">Connexion</a>
+        <a class="nav-link fs-4" href="{{path('app_home_blog')}}">Accueil</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    <h1>Rédiger un article</h1>
+
+        <script>
+        tinymce.init({
+            selector: 'textarea',
+            skin: 'oxide-dark',
+            language: 'fr_FR',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+            toolbar: 'undo redo | spellchecker language | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            content_langs: [
+                { title: 'French', code: 'fr' },
+                { title: 'English', code: 'en' },
+                { title: 'Spanish', code: 'es' },
+                { title: 'German', code: 'de' },
+                { title: 'Portuguese', code: 'pt' },
+                { title: 'Chinese', code: 'zh' },
+            ],
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        });
+        </script>
+        {{ form_start(form, {'attr': {'novalidate': ''}}) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.cover_img) }}
+            {{ form_row(form.content) }}
+            {{ form_row(form.Publier) }}
+        {{ form_end(form) }}
+
+    <footer class="footer bg-dark text-light p-3" style="color: #FFC531 !important;" >
+    <div class="container">
+        <div class="row text-center">
+            <small>CinéPop’ © 2024 Tous droits réservés ®</small>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}
+
